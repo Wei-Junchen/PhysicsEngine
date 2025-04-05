@@ -4,6 +4,7 @@
 #include "vector"
 #include "object.hpp"
 #include <iostream>
+#include <fstream> //for file output
 #include "force.hpp" // Assuming force.hpp is in the same directory
 
 class System
@@ -13,9 +14,10 @@ private:
     double dt{};
     std::vector<std::shared_ptr<Object>> objects {}; // Assuming Object is defined in object.hpp
     std::vector<std::unique_ptr<Force>> forces {}; // Assuming Force is defined in force.hpp
+    mutable std::ofstream file;
 public:
-    System() = default;
-    System(double t, double delta) : time(t), dt(delta) {}
+    System() = delete; // Default constructor is deleted to prevent default initialization
+    System(double t, double delta) : file{"output.txt"},time(t), dt(delta) {}
     double get_time() const { return time; }
     void set_time(double t) { time = t; }
     void set_dt(double delta) { dt = delta; }
@@ -27,7 +29,8 @@ public:
         for (const auto& object : objects)
         {
             // Display object properties here
-            std::cout <<std::hex<<std::showbase<<object<<std::dec<<std::noshowbase<<" : "<<object->motion.position <<" at: "<<time<< std::endl;
+            //std::cout <<std::hex<<std::showbase<<object<<std::dec<<std::noshowbase<<" : "<<object->motion.position <<" at: "<<time<< std::endl;
+            file<<std::hex<<std::showbase<<object<<std::dec<<std::noshowbase<<" : "<<object->motion.position <<" at: "<<time<< std::endl; // Write to file
         }
     }
 

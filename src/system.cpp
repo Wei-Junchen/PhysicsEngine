@@ -16,6 +16,12 @@ void System::update()
         //update the angular velocity
         object->motion.angular_velocity = object->motion.angular_velocity + object->motion.angular_acceleration * dt;
     }
+    //clear the acceleration of all objects
+    for(auto& object :objects)
+    {
+        object->motion.acceleration = {0.0, 0.0, 0.0}; // Reset acceleration to zero
+        object->motion.angular_acceleration = {0.0, 0.0, 0.0}; // Reset angular acceleration to zero
+    }
 }
 
 void System::accCalc()

@@ -4,6 +4,7 @@
 
 int main()
 {
+    std::cout << "Hello World!" << std::endl; // Print Hello World to the console
     System system(0.0, 0.01); // Initialize the system with time 0.0 and dt 0.1
     Object object1,object2,object3; // Create an object
     //using explicit initialization for properties

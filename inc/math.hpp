@@ -25,7 +25,6 @@ namespace engine
             _3 = other._3;
         }
         vector3d operator*(double scalar) const { return {_1 * scalar, _2 * scalar, _3 * scalar}; }
-        friend vector3d operator*(double,vector3d);
         //cross multiplication
         vector3d cross(const vector3d& other) const { return {_2 * other._3 - _3 * other._2, _3 * other._1 - _1 * other._3, _1 * other._2 - _2 * other._1}; }
         //dot multiplication
